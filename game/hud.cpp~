@@ -1,0 +1,51 @@
+#include "ioManager.h"
+#include "hud.h"
+
+Hud& Hud::getInstance() {
+  static Hud hud;
+  return hud;
+}
+
+Hud::Hud() : 
+  gdata(Gamedata::getInstance()),
+  io( IOManager::getInstance()),
+  position(Gamedata::getInstance().getXmlInt("hud/loc/x"), Gamedata::getInstance().getXmlInt("hud/loc/y")),
+  width(gdata.getXmlInt("hud/width")), 
+  height(gdata.getXmlInt("hud/height")),
+  thickness(gdata.getXmlInt("hud/thickness")),
+  worldWidth(Gamedata::getInstance().getXmlInt("world/width")),
+  worldHeight(Gamedata::getInstance().getXmlInt("world/height")),
+  visible(true),
+  color(),
+  lineColor()
+{
+  color = SDL_MapRGB(io.getScreen()->format, gdata.getXmlInt("hud/red"), gdata.getXmlInt("hud/green"), gdata.getXmlInt("hud/blue"));
+  lineColor = SDL_MapRGB(io.getScreen()->format, 255 - gdata.getXmlInt("hud/red")/10, 255 - gdata.getXmlInt("hud/green")/10, 255 - gdata.getXmlInt("hud/blue")/10);
+}
+
+void Hud::draw(float rate, unsigned int secs, std::string current) {
+  SDL_Surface * const screen = io.getScreen();
+  if(visible){
+	Draw_AALine(screen, X(), Y() + height/2, width, Y() + height/2, height, color);
+
+	Draw_AALine(screen, X(),Y(), width,Y(), thickness, lineColor);
+	Draw_AALine(screen, X(),height, width,height, thickness, lineColor);
+	Draw_AALine(screen, X(),Y(), X(),height, thickness, lineColor);
+	Draw_AALine(screen, width,Y(), width,height, thickness, lineColor);
+
+	io.printMessageValueAt("fps: ", rate, X() + thickness, (int)(Y() + height/7.0));
+	io.printMessageValueAt("Seconds elapsed: ", secs, X()+ thickness, (int)(Y() + 2*height/7.0));
+	io.printMessageAt("WASD to move ", X()+ thickness, (int)(Y() + 3*height/7.0));
+	io.printMessageAt("Up, Left, Down, and Right", X()+ thickness, (int)(Y() + 4*height/7.0));
+	io.printMessageAt("Press T to change characters!", X()+ thickness, (int)(Y() + 5*height/7.0));
+	io.printMessageAt(std::string("You are currently playing as ") + current, X()+ thickness, (int)(Y() + 4*height/7.0));
+	
+  }else{
+	if(secs >= 3)
+		io.printMessageAt("Press F1 to display the HUD", X(), Y());
+  }	
+}
+
+void Hud::update(unsigned int secs) {
+  if(secs == 2) setVisible(false);
+}

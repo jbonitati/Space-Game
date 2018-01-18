@@ -1,0 +1,240 @@
+<?xml version = "1.0"?>
+<GameData>
+<!-- screenTitle is also used to identify you and your animation.
+     So make sure to include your name as part of the screenTitle -->
+<screenTitle>Space Jam!! by Joey Bonitati</screenTitle>
+<maxStringSize>50</maxStringSize>
+
+<numPlayers>2</numPlayers>
+<numEnemies>8</numEnemies>
+
+<frameCap>60</frameCap>
+<framesAreCapped>true</framesAreCapped>
+
+<frameMax>300</frameMax>
+<username>jbonita</username>
+
+<acceleration>800</acceleration>
+<maxSpeed>150</maxSpeed>
+<friction>2</friction>
+
+<chunkSize>10</chunkSize>
+<chunkdist>100</chunkdist>
+
+<painters>
+	<object>sun</object>
+	<num>6</num>
+	<minScale>2</minScale>
+	<maxScale>15</maxScale>
+	<maxSpeed>60</maxSpeed>
+</painters>
+
+<spawnRate>2</spawnRate>
+<maxProjectiles>8</maxProjectiles>
+<projectiles>
+	<moon1>
+		<object>moon</object>
+		<damage>20</damage>
+		<dangerousSprite>redmoon</dangerousSprite>
+		<activeSprite>bluemoon</activeSprite>
+		<explosionSprite>explosion</explosionSprite>
+	</moon1>
+</projectiles>
+
+<view>
+  <width>854</width>
+  <height>480</height>
+</view>
+
+
+<world>
+  <width>854</width>
+  <height>480</height>
+</world>
+
+<hud>
+	<loc x="0" y="0"/>
+	<height>150</height>
+	<width>330</width>
+	<thickness>5</thickness>
+  	<red>0</red>
+  	<green>155</green>
+  	<blue>155</blue>
+</hud>
+
+<ObjectHud>
+	<loc x="650" y="0"/>
+	<height>100</height>
+	<width>200</width>
+	<thickness>5</thickness>
+  	<red>0</red>
+  	<green>155</green>
+  	<blue>155</blue>
+</ObjectHud>
+
+<back>
+  <file>images/space.png</file>
+  <red>193</red>
+  <green>205</green>
+  <blue>205</blue>
+  <factor>50</factor>
+  <transparency>false</transparency>
+</back>
+
+<back2>
+  <file>images/space2.png</file>
+  <red>255</red>
+  <green>0</green>
+  <blue>255</blue>
+  <factor>1000</factor>
+  <transparency>false</transparency>
+</back2>
+
+<back3>
+  <file>images/space3.png</file>
+  <red>255</red>
+  <green>0</green>
+  <blue>255</blue>
+  <factor>25</factor>
+  <transparency>true</transparency>
+</back3>
+
+<font name="font">
+  <file>font/dyslexic-bold.otf</file>
+  <size>14</size>
+  <red>180</red>
+  <green>210</green>
+  <blue>0</blue>
+  <unused>0</unused>
+</font>
+
+<spinstar>
+  <file>images/star.png</file>
+  <frames>4</frames>
+  <frameInterval>20</frameInterval>
+  <transparency>true</transparency>
+</spinstar>
+
+<sun>
+  <file>images/sun.png</file>
+  <frames>2</frames>
+  <frameInterval>200</frameInterval>
+  <transparency>true</transparency>
+</sun>
+
+<star>
+  <file>images/yellowstar32.png</file>
+  <transparency>true</transparency>
+</star>
+
+<moon>
+  <file>images/moon2.png</file>
+	<frames>3</frames>
+	<frameInterval>1000000</frameInterval>
+  <transparency>true</transparency>
+	<mass>1</mass>
+</moon>
+
+<explosion>
+  <file>images/explosion.png</file>
+  <transparency>true</transparency>
+</explosion>
+
+<AISmartness>250</AISmartness>
+
+<characters>
+
+	<earth>
+	  <file>images/earth2.png</file>
+		<startloc x="20" y="240"/>
+	  <frames>8</frames>
+	  <frameInterval>1400</frameInterval>
+	  <transparency>true</transparency>
+		<mass>4</mass>
+		<health>80</health>
+	</earth>
+
+	<mercury>
+	  <file>images/mercury2.png</file>
+		<startloc x="100" y="220"/>
+	  <frames>8</frames>
+	  <frameInterval>1100</frameInterval>
+	  <transparency>true</transparency>
+		<mass>2</mass>
+		<health>40</health>
+	</mercury>
+
+	<venus>
+	  <file>images/venus2.png</file>
+		<startloc x="360" y="110"/>
+	  <frames>8</frames>
+	  <frameInterval>1600</frameInterval>
+	  <transparency>true</transparency>
+		<mass>4</mass>
+		<health>80</health>
+	</venus>
+
+	<mars>
+	  <file>images/mars2.png</file>
+		<startloc x="250" y="200"/>
+	  <frames>8</frames>
+	  <frameInterval>9000</frameInterval>
+	  <transparency>true</transparency>
+		<mass>3</mass>
+		<health>60</health>
+	</mars>
+
+	<jupiter>
+	  <file>images/jupiter2.png</file>
+		<startloc x="320" y="350"/>
+	  <frames>8</frames>
+	  <frameInterval>4000</frameInterval>
+	  <transparency>true</transparency>
+		<mass>8</mass>
+		<health>120</health>
+	</jupiter>
+
+	<saturn>
+		<file>images/saturn.png</file>
+		<startloc x="480" y="220"/>
+		<frames>8</frames>
+		<frameInterval>600</frameInterval>
+		<transparency>true</transparency>
+		<mass>6</mass>
+		<health>100</health>
+	</saturn>
+
+	<uranus>
+		<file>images/uranus.png</file>
+		<startloc x="640" y="260"/>
+		<frames>8</frames>
+		<frameInterval>700</frameInterval>
+		<transparency>true</transparency>
+		<mass>5</mass>
+		<health>100</health>
+	</uranus>
+
+	<neptune>
+		<file>images/neptune.png</file>
+		<startloc x="720" y="240"/>
+		<frames>8</frames>
+		<frameInterval>700</frameInterval>
+		<transparency>true</transparency>
+		<mass>6</mass>
+		<health>90</health>
+	</neptune>
+
+	<pluto>
+		<file>images/pluto.png</file>
+		<startloc x="750" y="140"/>
+		<frames>8</frames>
+		<frameInterval>1600</frameInterval>
+		<transparency>true</transparency>
+		<mass>1</mass>
+		<health>20</health>
+	</pluto>
+
+</characters>
+
+<godMode>16</godMode><!--The secret number to activate godMode is 17-->
+</GameData>

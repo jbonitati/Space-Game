@@ -1,0 +1,27 @@
+#include <string>
+#include <vector>
+#include "multisprite.h"
+
+static float trackedx = 0.0;
+
+class TwoWayMultiSprite : public MultiSprite {
+public:
+  TwoWayMultiSprite(const std::string& name) :
+    MultiSprite(name)
+    { }
+  TwoWayMultiSprite(const string& n, const Vector2f& pos, const Vector2f& vel):
+	Multisprite(n,pos,vel){}
+  TwoWayMultiSprite(const TwoWayMultiSprite& s):
+    MultiSprite(s)
+    { }
+  virtual ~TwoWayMultiSprite() { } 
+  virtual void update(Uint32 ticks);
+  static float getTrackedX(){return trackedx;}
+  static void setTrackedX(float x){trackedx = x;}
+
+private:
+  TwoWayMultiSprite& operator=(const TwoWayMultiSprite &rhs);
+
+protected:
+  void advanceFrame(Uint32 ticks);
+};

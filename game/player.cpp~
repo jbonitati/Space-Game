@@ -1,0 +1,72 @@
+#include "player.h"
+#include <cmath>
+#include <limits>
+#include "gamedata.h"
+
+Player::Player(const std::string spriteName, std::string pName):
+	TwoWayMultiSprite(spriteName), playerName(pName), score(0),
+  	maxSpeed(Gamedata::getInstance().getXmlInt("maxSpeed")),
+  	acceleration(Gamedata::getInstance().getXmlInt("acceleration"))
+{}
+
+Player::Player(const Player &p): 
+	TwoWayMultiSprite(p.getName()), playerName(p.playerName), score(p.score),
+  	maxSpeed(Gamedata::getInstance().getXmlInt("maxSpeed")),
+  	acceleration(Gamedata::getInstance().getXmlInt("acceleration"))
+{}
+
+void Player::update(Uint32 ticks) { 
+  Vector2f vincr = getacceleration()* static_cast<float>(ticks) * 0.001;
+  setVelocity(getVelocity() + vincr);
+  Vector2f incr = getVelocity() * static_cast<float>(ticks) * 0.001;
+  setPosition(getPosition() + incr);
+
+  if ( Y() < 0) {
+    velocityY( 0) ;
+  }
+  if ( Y() > worldHeight-frameHeight) {
+    velocityY( 0) ;
+  }
+
+  if ( X() < 0) {
+    velocityX(-1* std::numeric_limits<float>::min());
+  }
+  if ( X() > worldWidth-frameWidth) {
+    velocityX( 0);
+  }
+
+  advanceFrame(ticks);
+}
+
+void Player::moveUp(){
+	int c = Gamedata::getInstance().getXmlInt("maxSpeed");
+	int a = Gamedata::getInstance().getXmlInt("acceleration");
+	accelerationY(-1.0*a/(frameWidth*frameHeight) * (c - velocityY()));
+}
+void Player::moveDown(){
+	int c = Gamedata::getInstance().getXmlInt("maxSpeed");
+	int a = Gamedata::getInstance().getXmlInt("acceleration");
+	accelerationY(1.0*a/(frameWidth*frameHeight) * (c - velocityY()));
+}
+void Player::moveLeft(){
+	int c = Gamedata::getInstance().getXmlInt("maxSpeed");
+	int a = Gamedata::getInstance().getXmlInt("acceleration");
+	accelerationX(-1.0*a/(frameWidth*frameHeight) * (c - velocityX()));
+}
+void Player::moveRight(){
+	int c = Gamedata::getInstance().getXmlInt("maxSpeed");
+	int a = Gamedata::getInstance().getXmlInt("acceleration");
+	accelerationX(1.0*a/(frameWidth*frameHeight) * (c - velocityX()));
+} 
+void Player::stopUp(){
+	accelerationY(0);
+}
+void Player::stopDown(){
+	accelerationY(0);
+}
+void Player::stopLeft(){
+	accelerationX(0);
+}
+void Player::stopRight(){
+	accelerationX(0);
+}

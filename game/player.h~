@@ -1,0 +1,28 @@
+#include <string>
+#include "twowaymultisprite.h"
+
+class Player : public TwoWayMultiSprite{
+public:
+	Player(const std::string spriteName, std::string playerName);
+	Player(const Player& p);
+	virtual ~Player() { } 
+ 	virtual void update(Uint32 ticks);
+	void moveUp();
+	void moveDown();
+	void moveLeft();
+	void moveRight();
+	void stopUp();
+	void stopDown();
+	void stopLeft();
+	void stopRight();
+	std::string getPlayerName(){return playerName;}
+
+private:
+	std::string playerName;
+	int score;
+  	int maxSpeed;
+  	int acceleration;
+	Player& operator=(const Player& p);
+};
+
+

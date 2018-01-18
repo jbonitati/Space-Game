@@ -1,0 +1,33 @@
+#include <string>
+#include <vector>
+#include "drawable.h"
+
+class MultiSprite : public Drawable {
+public:
+  MultiSprite(const std::string&);
+  TwoWayMultiSprite(const string& n, const Vector2f& pos, const Vector2f& vel):
+	Multisprite(n,pos,vel){}
+  MultiSprite(const MultiSprite&);
+  virtual ~MultiSprite() { } 
+
+  virtual void draw() const;
+  virtual void update(Uint32 ticks);
+  virtual const Frame* getFrame() const { 
+    return frames[currentFrame]; 
+  }
+  virtual const std::vector<Frame *> getFrames(){return frames;}
+
+protected:
+  const std::vector<Frame *> frames;
+  int worldWidth;
+  int worldHeight;
+
+  unsigned currentFrame;
+  unsigned numberOfFrames;
+  unsigned frameInterval;
+  float timeSinceLastFrame;
+  int frameWidth;
+  int frameHeight;
+
+  virtual void advanceFrame(Uint32 ticks);
+};
